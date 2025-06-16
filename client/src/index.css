@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+/* In your global CSS file (e.g., index.css or App.css) */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
