@@ -39,7 +39,7 @@ const EstimatorPage = () => {
 
     setLoading(true);
     try {
-      const response = await fetch('https://tech-bid-ai-276w.vercel.app/estimate', {
+      const response = await fetch('https://techbid-ai.onrender.com/estimate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
