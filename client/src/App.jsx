@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import EstimatorPage from './pages/EstimatorPage'
 import Navbar from './components/Navbar'
 import About from './pages/About'
+import TeachOurAI from './pages/TeachAI'
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route path='/' element={<Home/>}/>
         <Route path='/estimator' element={<EstimatorPage/>}/>
         <Route path='/about' element={<About/>}/>
+        <Route path='/teach-ai' element={<TeachOurAI/>}/>
         </Routes>
       </div>
     </div>
