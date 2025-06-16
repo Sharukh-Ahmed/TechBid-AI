@@ -39,7 +39,7 @@ const EstimatorPage = () => {
 
     setLoading(true);
     try {
-      const response = await fetch('https://techbid-ai-server.onrender.com/estimate', {
+      const response = await fetch('http://localhost:5000/estimate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -178,6 +178,7 @@ const EstimatorPage = () => {
         transition={{ duration: 0.6 }}
         className="w-full max-w-6xl bg-black/30 text-gray-300 rounded-xl shadow-xl p-4 overflow-auto"
       >
+        <div className='hidden sm:block'>
         <table className="w-full table-auto border-collapse">
           <thead>
             <tr className="bg-purple-700 text-white">
@@ -234,6 +235,64 @@ const EstimatorPage = () => {
             ))}
           </tbody>
         </table>
+        </div>
+
+        {/* Mobile Table View */}
+        <div className="sm:hidden space-y-4 mt-6">
+          {items.map((item, index) => (
+            <div key={item.id} className="bg-purple-900/40 rounded-xl p-4 space-y-3 shadow-lg">
+              <div className="flex justify-between items-center">
+                <h3 className="font-bold text-white">Item {index + 1}</h3>
+                <button onClick={() => removeItem(index)} className="text-red-400 hover:text-red-600 text-lg">❌</button>
+              </div>
+
+              <div>
+                <label className="block text-purple-200 text-sm mb-1">Description</label>
+                <textarea
+                  className="w-full px-2 py-2 resize-none rounded bg-white/10 text-white outline-none focus:ring-0"
+                  value={item.description}
+                  placeholder="Item Description"
+                  onChange={(e) => handleItemChange(index, 'description', e.target.value)}
+                />
+              </div>
+
+              <div className="flex gap-2">
+                <div className="flex-1">
+                  <label className="block text-purple-200 text-sm mb-1">Quantity</label>
+                  <input
+                    type="number"
+                    className="w-full px-2 py-2 rounded bg-white/10 text-white outline-none text-center"
+                    placeholder="Qty"
+                    value={item.quantity}
+                    onChange={(e) => handleItemChange(index, 'quantity', e.target.value)}
+                  />
+                </div>
+
+                <div className="flex-1">
+                  <label className="block text-purple-200 text-sm mb-1">Unit</label>
+                  <input
+                    type="text"
+                    className="w-full px-2 py-2 rounded bg-white/10 text-white outline-none text-center"
+                    placeholder="Unit"
+                    value={item.unit}
+                    onChange={(e) => handleItemChange(index, 'unit', e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-purple-200 text-sm mb-1">AI Assumptions</label>
+                <div className="text-white text-sm">{item.aiPrice || '-'}</div>
+              </div>
+
+              <div>
+                <label className="block text-purple-200 text-sm mb-1">Unit Price</label>
+                <div className="text-purple-100 font-semibold">{item.assumptions || '-'}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
 
       </motion.div>
 
