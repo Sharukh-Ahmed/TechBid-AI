@@ -39,7 +39,7 @@ const EstimatorPage = () => {
 
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/estimate', {
+      const response = await fetch('https://techbid-ai-server.onrender.com/estimate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
